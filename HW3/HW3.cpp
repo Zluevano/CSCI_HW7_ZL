@@ -1,3 +1,8 @@
+/*
+Programmer: Zachary Luevano
+Date: October 9th, 2022
+Description: Simple book problem that shows tthat a global function isn't always what is shown, for example when you first set firstnum to =10 in the main function you get 10, when you do the same in another function where it isn't it displays the global value.
+*/
 #include <iostream>
 using namespace std;
 

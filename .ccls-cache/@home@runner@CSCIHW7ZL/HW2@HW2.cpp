@@ -1,3 +1,8 @@
+/*
+Programmer: Zachary Luevano
+Date: October 9th, 2022
+Description: Uses a pass by reference to initalize several variables that take a time in seconds inputed that is then passed along to another function that converts it into minutes aswell as into hours. This is done via a void function as it's just returning values.
+*/
 #include <cmath>
 #include <cstdlib>
 #include <ctime>
@@ -19,7 +24,7 @@ int second;
 cout << "Enter time in second: " << endl;
 cin >> second;
 
-cout << "You entered " << s << " in Seconds" << endl;
+cout << "You entered " << second << " in Seconds" << endl;
 cout << endl;
 time(second, s, m, h);
   
@@ -28,7 +33,7 @@ return 0;
 
 void time(int seconds, int& sec, int& mins, int& hour)
 {
-cout << "The value of seconds is seconds" << endl;
+cout << "The value of seconds in seconds" << endl;
 cout << seconds << endl;
 cout << endl;
   

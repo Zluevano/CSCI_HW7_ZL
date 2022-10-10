@@ -251,8 +251,27 @@ char GiveFeedBack() {
   return randPickChar;
 }
 
-/*
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 It turns out doing it this way without having a seperate userpick also works 
 #include <cmath>
 #include <cstdlib>
@@ -327,4 +346,228 @@ char userPick[5] {'R', 'P', 'S','L','K'};
         (userPick[5] == userPick [4]) && (computerPick == 'R') ||
         (userPick[5] == userPick [4]) && (computerPick == 'S'))
          {
+
+
+
+
+
+#include <cmath>
+#include <cstdlib>
+#include <ctime>
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+/////////////////// Prototype Functions - Declared for use later/////////////////////////////
+void TranslatePick(int flag_who, char selection);
+char ComputerSelectRPSLK(); // Rock-paper-scissors-lizard-spock
+char GiveFeedBack(); // Random Winning message
+///////////////////////////////// Main ///////////////////////////////////////
+int main() {
+///////////////////////////////// Arrays ///////////////////////////////////////
+char userPick[5] {'R', 'P', 'S','L','K'};
+
+  
+  //Declare Global Variables
+  int counter = 0;        //User Counter
+  int CompCounter = 0;    //Computer Counter
+  char Win;
+//////////////////////////////////////////////////////////////////////////////////
+// For loop for repeating three times, does the other varibles that are included in this aswell.
+  for (int i = 0; i < 3; i++) {
+    // Declare Variables:
+  //  char userPick;           // User selection for game
+    bool valid_pick = false; // Flag controlled while loop for obtaining user
+                             // input, set to false for initial selection
+    char computerPick;       // Randomly selected computer selection for game - time based       
+    char Win;                // Used to get random Winning message
+
+    // Display Rules of game:
+    cout << endl;
+    cout << "It's time to play Rock, Paper, Scissors, Lizard, Spock!" << endl;
+    cout << "Use R (for Rock), P (for Paper), S (for Scissors), L (for Lizard) "
+            "and K (for Spock)."
+         << endl;
+    cout << endl;
+
+    // Obtain userPick goes until you enter the prior selection and it entered
+    // true.
+    while (valid_pick == false) {
+      cout << "You pick: ";
+      cin >> userPick[5]; // Char for K, S, R etc...
+      cout << endl;
+      if ((userPick[5] == userPick [0]) || (userPick[5] == userPick[1]) || (userPick[5] == userPick[2]) ||
+          (userPick[5] == userPick[3]) || (userPick[5] == userPick[4])) {
+        valid_pick = true;
+      } else
+        cout << "Invalid Selection. Try again." << endl;
+    }
+
+    // Repeat selection back to user:
+    TranslatePick(0, userPick[5]);
+
+    // Obtain computer selection:
+    computerPick = ComputerSelectRPSLK();
+    TranslatePick(1, computerPick); // Inform user of computer selection
+
+    // Handout (Part A): Determine the winner of the game.
+    
+    if  ((userPick[5] == userPick [0]) && (computerPick == 'S') ||
+        (userPick[5] == userPick [0]) && (computerPick == 'L') ||
+        (userPick[5] == userPick [2]) && (computerPick == 'P') ||
+        (userPick[5] == userPick [2]) && (computerPick == 'L') ||
+        (userPick[5] == userPick [1]) && (computerPick == 'R') ||
+        (userPick[5] == userPick [1]) && (computerPick == 'K') ||
+        (userPick[5] == userPick [3]) && (computerPick == 'K') ||
+        (userPick[5] == userPick [3]) && (computerPick == 'P') ||
+        (userPick[5] == userPick [4]) && (computerPick == 'R') ||
+        (userPick[5] == userPick [4]) && (computerPick == 'S'))
+         {
+    
+    /*
+    if ((userPick == 'R') && (computerPick == 'S') ||
+        (userPick == 'R') && (computerPick == 'L') ||
+        (userPick == 'S') && (computerPick == 'P') ||
+        (userPick == 'S') && (computerPick == 'L') ||
+        (userPick == 'P') && (computerPick == 'R') ||
+        (userPick == 'P') && (computerPick == 'K') ||
+        (userPick == 'L') && (computerPick == 'K') ||
+        (userPick == 'L') && (computerPick == 'P') ||
+        (userPick == 'K') && (computerPick == 'R') ||
+        (userPick == 'K') && (computerPick == 'S')) {&
+
+      counter++;
+      cout << endl;
+      cout << "User wins this round." << endl;
+    }
+
+    else if (userPick[5] == computerPick) {
+      cout << endl;
+      cout << "Is a tie!" << endl;
+    }
+
+    else {
+      cout << endl;
+      cout << "Computer wins this round." << endl;
+      CompCounter++;
+    }
+  }
+  
+  cout << endl;
+  cout << "You won: " << counter << " out of 3" << endl;
+  cout << "Computer won: " << CompCounter << " out of 3" << endl;
+  if (counter > CompCounter) {
+    cout << "User won the game." << endl;
+    Win = GiveFeedBack();
+    cout << Win << endl;
+  }
+
+  if (counter < CompCounter)
+    cout << "Computer won the game." << endl;
+  if (counter == CompCounter){
+    cout << endl;
+    cout << "The game is a tie!" << endl;
+  }
+  
+}
+
+//////////////////////////////// User-Created Functions ///////////////////////////////
+/* 
+void TranslatePick(int flag_who, char selection) {
+  // Declare local fnction variables
+  string who_text;
+
+  // Identify which statements to insert into the output below
+  if (flag_who == 0)
+    who_text = "You ";
+  else
+    who_text = "The Computer ";
+
+  // Display output where the char selection is translated into words:
+  if (selection == 'R')
+    cout << who_text << "selected Rock." << endl;
+  else if (selection == 'P')
+    cout << who_text << " selected Paper." << endl;
+  else if (selection == 'S')
+    cout << who_text << " selected Scissors." << endl;
+  else if (selection == 'L')
+    cout << who_text << " selected Lizard." << endl;
+  else if (selection == 'K')
+    cout << who_text << " selected Spock." << endl;
+  else // something is wrong
+    cout << "Check code for errors. Message from TranslatePick fcn." << endl;
+  return;
+}
+//////////////////////////////////// Random Generated Selection /////////////////////////////////////////
+//   This function is used to make a random character selection in the game Rock,
+//   Paper, Scissors, Lizard Spock. Parameters: there are no inputs
+
+char ComputerSelectRPSLK() {
+  // Declare Local Variables
+  char randPickChar;
+  int randPick;
+
+  // Pick a random number from 0 to 4.
+  srand(time(NULL));     // Initialize Random seed.
+  randPick = rand() % 5; // Gives us 0 to 4
+  // cout << randPick; //Debuging tool
+
+  // Assign a random number to letter
+  switch (randPick) {
+  case 0:
+    randPickChar = 'R';
+    break;
+  case 1:
+    randPickChar = 'P';
+    break;
+  case 2:
+    randPickChar = 'S';
+    break;
+  case 3:
+    randPickChar = 'L';
+    break;
+  case 4:
+    randPickChar = 'K';
+    break;
+  default:
+    cout << "Error in the function ComputerSelectRPSLK. " << endl;
+  }
+  return randPickChar;
+}
+
+// Random Win message
+char GiveFeedBack() {
+  //Declare Local Variables
+  char randPickChar;
+  int randPick;
+  
+  // Pick a random number from 0 to 4.
+  srand(time(NULL));     // Initialize Random seed.
+  randPick = rand() % 5; // Gives us 0 to 4
+  // cout << randPick; //Debuging tool
+
+  // Assign a random number to a cout.
+  switch (randPick) {
+  case 0:
+    cout << "Penny!";
+    break;
+  case 1:
+    cout << "You did it yay!";
+    break;
+  case 2:
+    cout << "To beat the computer is to understand the time solution.";
+    break;
+  case 3:
+    cout << "That was easy!";
+    break;
+  case 4:
+    cout << "Bazinga";
+    break;
+  default:
+    cout << "Error in the function GiveFeedBack. " << endl;
+  }
+  return randPickChar;
+}
+
 */

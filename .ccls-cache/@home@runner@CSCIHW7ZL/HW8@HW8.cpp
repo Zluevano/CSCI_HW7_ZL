@@ -54,7 +54,7 @@ cout << endl; //Gap for console
 cout << "Now listing them by occurence" << endl;
 for(int i = 0; i < n; i++){ 
   //Skips if true
-  if(counted[i] == true)
+  if(counted[i] == true) //See line 65-66 one the i+1 is set to 1 it will skip that part and move on to (i+1) +1.
   continue; // Skips to next iteration that is i+1 this is done to avoid duplicates.
   
   // counts frequency, if value for list[i] = the value for list [j] which is the next of i or i+1 
@@ -101,4 +101,3 @@ for(int i = 0; i < n; i++){
   } 
 
 }
-//HW8 had many attempts across other files as debugger does not work with this many folders, I referred to geeksforgeeks and classmates for some of this which I'm assuming is okay given the difficulty of this and the prior d2l post. Included plenty of notes on how this works to my understanding however.
